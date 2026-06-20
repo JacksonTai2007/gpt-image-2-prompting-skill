@@ -1,0 +1,23 @@
+# Trigger evals for the gpt-image-2-prompting skill.
+#
+# Goal: the skill's `description` should make Claude load it for image-prompt
+# tasks, and NOT load it for unrelated work. For each phrase, check whether the
+# skill activates in a fresh session.
+
+should_trigger:
+  - "Write me a GPT Image 2 prompt for a minimalist smartwatch launch poster."
+  - "Design an app screen mockup with AI — make the on-screen text actually readable."
+  - "My AI poster keeps coming out with gibberish text. Fix my prompt."
+  - "Keep the same character's face across six different scenes."
+  - "Turn this idea into an image prompt: a museum-style exploded diagram of a camera."
+  - "Generate a whole series of Instagram portraits of the same person."
+  - "做一张电商产品主图的 AI 出图提示词"          # e-commerce product hero shot
+  - "帮我把这个角色画成官方三视图设定集"           # character reference sheet (image-to-image)
+
+should_not_trigger:
+  - "Increase the brightness of this photo in Photoshop."
+  - "Write a Python script to resize a folder of JPEGs."
+  - "Summarize this PDF for me."
+  - "What's the difference between PNG and WebP compression?"
+  - "Fix the bug in my React component."
+  - "Plan a 3-day trip to Kyoto."

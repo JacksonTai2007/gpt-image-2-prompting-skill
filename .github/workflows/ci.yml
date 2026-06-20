@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: No unfilled placeholders
+        run: |
+          if grep -RnoE '<Your Name>|<your-username>|<你的用户名>' --include='*.md' .; then
+            echo "::error::Unfilled placeholder found"; exit 1
+          fi
+          echo "OK: no placeholders"
+
+      - name: Recipe count is consistent across files
+        run: |
+          n=$(grep -cE '^### [0-9]+\.' gpt-image-2-prompting/references/scene-cookbook.md)
+          echo "scene-cookbook.md defines $n recipes"
+          # Any "<num> optimized, ready-to-run" that disagrees with the real count is drift.
+          drift=$(grep -rhoE '~?[0-9]+ optimized, ready-to-run' --include='*.md' . \
+                  | grep -oE '[0-9]+' | sort -u | grep -vx "$n" || true)
+          if [ -n "$drift" ]; then
+            echo "::error::recipe-count drift — found '$drift' but scene-cookbook.md has $n"; exit 1
+          fi
+          for f in README.md README_zh.md; do
+            grep -q "$n" "$f" || { echo "::error file=$f::should mention recipe count $n"; exit 1; }
+          done
+          echo "OK: recipe count $n is consistent"
+
+      - name: SKILL.md frontmatter has name, description, version
+        run: |
+          fm=$(awk 'f&&/^---[[:space:]]*$/{exit} /^---[[:space:]]*$/{f=1;next} f' \
+               gpt-image-2-prompting/SKILL.md)
+          for k in name description version; do
+            printf '%s\n' "$fm" | grep -qE "^$k:" \
+              || { echo "::error::SKILL.md frontmatter missing '$k'"; exit 1; }
+          done
+          echo "OK: frontmatter has name, description, version"
+
+      - name: Skill bundle is present
+        run: test -f dist/gpt-image-2-prompting.skill && echo "OK: bundle present"

@@ -5,6 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Claude Skill](https://img.shields.io/badge/type-Claude%20Skill-8A63D2.svg)](https://www.anthropic.com/news/skills)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
 
 中文说明见 [README_zh.md](README_zh.md)。
 
@@ -24,6 +25,7 @@ gpt-image-2-prompting/
 │                             universal principles, internationalization, image-to-image,
 │                             series/batch orchestration, runtime knobs
 └── references/
+    ├── categories.md         Request router → artifact archetype → template + recipe
     ├── templates.md          13 artifact categories — prose + JSON templates + pitfall guides
     ├── scene-cookbook.md     29 optimized, ready-to-run scene recipes, each with "the trick"
     ├── style-library.md      Composable menus: aspect ratios, lenses, film stocks, lighting,

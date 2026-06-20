@@ -5,6 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Claude Skill](https://img.shields.io/badge/type-Claude%20Skill-8A63D2.svg)](https://www.anthropic.com/news/skills)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
 
 English: [README.md](README.md)
 
@@ -23,6 +24,7 @@ gpt-image-2-prompting/
 ├── SKILL.md                  核心方法：模型强项、6 段协议、通用法则、
 │                             国际化、图生图、系列批量编排、运行参数
 └── references/
+    ├── categories.md         需求路由 —— 产物原型 → 模板 + 配方
     ├── templates.md          13 类通用模板 —— 散文 + JSON + 避坑指南
     ├── scene-cookbook.md     29 个优化过的场景配方，每个都点明"关键技巧"
     ├── style-library.md      可拼装组件库：画幅、镜头、胶片型号、光线、

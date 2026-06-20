@@ -1,0 +1,58 @@
+name: New scene recipe
+description: Propose a ready-to-run recipe for the scene cookbook
+title: "[recipe] <scene name>"
+labels: ["recipe"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for adding a recipe! The bar: it should make Claude write a
+        **better, reproducible** GPT Image 2 prompt for a *specific* scene that
+        isn't already covered. See `CONTRIBUTING.md` for the house rules.
+  - type: input
+    id: scene
+    attributes:
+      label: Scene
+      description: One line — what is this recipe for, and when would you reach for it?
+      placeholder: "e.g. Vintage transit poster with a bilingual headline"
+    validations:
+      required: true
+  - type: textarea
+    id: trick
+    attributes:
+      label: The one trick
+      description: The single insight that makes this scene reliably work.
+    validations:
+      required: true
+  - type: textarea
+    id: prompt
+    attributes:
+      label: Copy-paste prompt
+      description: A ready-to-run prompt with `[editable slots]`.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Load-bearing negatives
+      description: The forbidden elements this scene needs (e.g. "no plastic skin, no watermark, no text").
+    validations:
+      required: false
+  - type: input
+    id: source
+    attributes:
+      label: Source / attribution
+      description: "`original`, or the creator/repo it came from."
+      placeholder: "original"
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: People defaults stay neutral — appearance is an editable slot, not hard-coded
+          required: true
+        - label: This isn't a duplicate of an existing recipe
+          required: true

@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Contributing guide
+    url: https://github.com/JacksonTai2007/gpt-image-2-prompting-skill/blob/main/CONTRIBUTING.md
+    about: How to add recipes, templates, style components, and troubleshooting fixes.

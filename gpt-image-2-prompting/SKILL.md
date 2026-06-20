@@ -1,5 +1,6 @@
 ---
 name: gpt-image-2-prompting
+version: 0.1.0
 description: >-
   Write, refine, and debug production-grade prompts for GPT Image 2 (OpenAI's
   text-to-image / image-to-image model; also covers gpt-image-1, ChatGPT image
@@ -48,7 +49,7 @@ Every strong prompt — prose or JSON — is built from these atomic blocks. Com
 
 When a user gives you an image idea, don't just polish their words — run it through the protocol:
 
-1. **Classify the task** → pick the matching template from `references/templates.md` (13 categories) and/or a specific recipe from `references/scene-cookbook.md` (optimized, ready-to-run scenes).
+1. **Classify the task** → use `references/categories.md` to route the request to its artifact archetype, then pull the matching template from `references/templates.md` (13 categories) and/or a specific recipe from `references/scene-cookbook.md`.
 2. **Lock structure before style.** Pin aspect ratio, layout/grid, module count, and camera *before* reaching for adjectives. Structure-first is the single biggest defense against "messy AI collage."
 3. **Hardcode every piece of text** that must appear, verbatim, with its role and a readability demand.
 4. **Layer style and material** — pull concrete components from `references/style-library.md` (lighting, lens, film stocks, materials, palettes, named styles) rather than generic words like "high quality."
@@ -131,11 +132,20 @@ Same *content* either way — both obey the 6-block protocol; JSON just makes th
 - **Count:** `n` returns variations of *one* prompt — not different scenes. For different scenes, issue separate generations (or orchestrate them in one chat message; see *Consistency & series*).
 - **Editing:** image-to-image uses the `images.edit` endpoint (image + optional mask) instead of `images.generate`.
 
+## Generating the image (only if the host can)
+
+Your job is to produce the *prompt*. Only offer to generate the image itself when the runtime actually exposes an image tool (e.g. an `image_generate` / images API tool in this session):
+
+- **Check first, never assume.** If no image-generation tool is available, hand over the finished prompt and tell the user where to paste it (ChatGPT, the OpenAI API, etc.). Do **not** pretend you rendered anything.
+- **Offer, don't auto-fire.** When a tool *is* available, deliver the prompt first, then ask if they want you to run it — generating can cost money and they may want to tweak the prompt first.
+- **One prompt → one image.** For a set, generate separate calls (see *Consistency & series*), never a merged grid.
+
 ## Reference files
 
 Load these as needed; don't dump them into context preemptively.
 
+- **`references/categories.md`** — A router: maps each request to its artifact archetype, the matching template, and the recipe(s) that apply. Read this *first* to classify a request before drafting.
 - **`references/templates.md`** — Copy-paste prose **and** JSON templates for all 13 artifact categories (UI, infographic, poster, e-commerce, brand, architecture, photography, illustration, character, narrative, historical, document, general), each with its pitfall guide. Read this when the task maps to a broad artifact type.
-- **`references/scene-cookbook.md`** — ~26 optimized, ready-to-run recipes for specific high-value scenes (film-stock portrait, authentic amateur snapshot, consistency grid, city-silhouette poster, surface-integrated typography, named-game screenshot, full app screenshot, live-stream UI, social-feed mockup, character reference sheet, expression grid, museum-catalog infographic, exploded breakdown, process journey, text-hierarchy product poster, brand-mascot collab, ancient scroll, hand-drawn map, labeled grid, and more). Each entry names *the one trick* that makes it work. Read this when the user's request matches a specific scene rather than a generic category.
+- **`references/scene-cookbook.md`** — 29 optimized, ready-to-run recipes for specific high-value scenes (film-stock portrait, authentic amateur snapshot, consistency grid, city-silhouette poster, surface-integrated typography, named-game screenshot, full app screenshot, live-stream UI, social-feed mockup, character reference sheet, expression grid, museum-catalog infographic, exploded breakdown, process journey, text-hierarchy product poster, brand-mascot collab, ancient scroll, hand-drawn map, labeled grid, and more). Each entry names *the one trick* that makes it work. Read this when the user's request matches a specific scene rather than a generic category.
 - **`references/style-library.md`** — Composable component menus: aspect ratios, camera & lens, film stocks & camera types, lighting setups, color systems, materials & textures, art/illustration styles, composition patterns, realism boosters, render-quality tags, and reusable text directives. Read this when layering blocks 3 and 5, or offering look/feel options.
 - **`references/troubleshooting.md`** — Symptom → cause → fix table for failed generations (gibberish text, messy layout, plastic faces, wrong era, ignored text, washed-out product, identity drift, screenshot looking like concept art, rendered key names). Read this when a generation came out wrong and the prompt needs a fix.

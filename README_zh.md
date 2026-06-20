@@ -64,9 +64,11 @@ cp -r gpt-image-2-prompting-skill/gpt-image-2-prompting ~/.claude/skills/
 ```
 
 **Claude.ai / Claude 桌面 App**
-下载 [`dist/gpt-image-2-prompting.skill`](dist/gpt-image-2-prompting.skill)，在 **设置 → 能力/Skills** 里上传。
+下载 **`.skill` 包** —— [`dist/gpt-image-2-prompting.skill`](dist/gpt-image-2-prompting.skill),或从 [最新 Release](https://github.com/JacksonTai2007/gpt-image-2-prompting-skill/releases/latest) —— 在 **设置 → 能力/Skills** 里上传。
 
-> Skill 的可用性与具体菜单名称随套餐和 App 版本不同，找不到入口时请查 Anthropic 最新文档。
+> ⚠️ 要上传这个 `.skill` 文件,**不要**用 GitHub 绿色 **Code → Download ZIP** 或 Release 里的 **Source code** 压缩包——它们会把整个仓库多套一层文件夹,导致导入器报 `SKILL.md` 嵌套太深。如果上传框只收 `.zip`,把 `gpt-image-2-prompting.skill` 改名成 `.zip` 即可(同一个文件)。
+>
+> Skill 的可用性与具体菜单名称随套餐和 App 版本不同,找不到入口时请查 Anthropic 最新文档。
 
 ## 怎么用
 

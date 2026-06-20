@@ -68,8 +68,10 @@ cp -r gpt-image-2-prompting-skill/gpt-image-2-prompting ~/.claude/skills/
 ```
 
 **Claude.ai / Claude desktop app**
-Download [`dist/gpt-image-2-prompting.skill`](dist/gpt-image-2-prompting.skill) and upload it in **Settings → Capabilities/Skills**.
+Download the **`.skill` bundle** — [`dist/gpt-image-2-prompting.skill`](dist/gpt-image-2-prompting.skill), or from the [latest release](https://github.com/JacksonTai2007/gpt-image-2-prompting-skill/releases/latest) — and upload it in **Settings → Capabilities/Skills**.
 
+> ⚠️ Upload that `.skill` file, **not** GitHub's green **Code → Download ZIP** or a release's **Source code** archive. Those wrap the whole repo in an extra folder, so the importer reports `SKILL.md` as nested too deep. If your uploader only accepts `.zip`, just rename `gpt-image-2-prompting.skill` to `.zip` — it's the same file.
+>
 > Skill availability and exact menu names vary by plan and app version — check Anthropic's current docs if the option isn't where you expect.
 
 ## Use

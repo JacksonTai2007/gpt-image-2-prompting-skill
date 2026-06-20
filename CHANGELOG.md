@@ -9,6 +9,7 @@ All notable changes to this skill are documented here. The format is based on
 ### Changed
 - CI now runs `scripts/ci-checks.sh` (also runnable locally); the workflow is reduced to a minimal checkout + run.
 - README (EN + 简体中文): added a CI badge, a note on how the skill routes a request, and a Development section.
+- Install docs: clarified that the `.skill` bundle must be uploaded (not GitHub's source archive), and attached the bundle as a release asset.
 
 ## [0.1.0] — 2026-06-20
 

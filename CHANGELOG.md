@@ -6,6 +6,10 @@ All notable changes to this skill are documented here. The format is based on
 
 ## [Unreleased]
 
+### Changed
+- CI now runs `scripts/ci-checks.sh` (also runnable locally); the workflow is reduced to a minimal checkout + run.
+- README (EN + 简体中文): added a CI badge, a note on how the skill routes a request, and a Development section.
+
 ## [0.1.0] — 2026-06-20
 
 Initial public release.

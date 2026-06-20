@@ -6,6 +6,7 @@
 [![Claude Skill](https://img.shields.io/badge/type-Claude%20Skill-8A63D2.svg)](https://www.anthropic.com/news/skills)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
+[![CI](https://github.com/JacksonTai2007/gpt-image-2-prompting-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/JacksonTai2007/gpt-image-2-prompting-skill/actions/workflows/ci.yml)
 
 English: [README.md](README.md)
 
@@ -31,6 +32,8 @@ gpt-image-2-prompting/
     │                         配色、材质、画风、构图、写实增强
     └── troubleshooting.md     故障排查表：症状 → 病因 → 修法
 ```
+
+当你提出出图需求时，技能会先**给需求归类**（走 `categories.md`），取出对应的模板 + 配方，填好下面的 6 个区块；如果出图不对，就对照排查表来修。
 
 ### 6 段提示词协议
 任何一条好提示词（散文或 JSON）都由这几块组成，顺序固定为 意图 → 结构 → 风格 → 约束：
@@ -91,9 +94,18 @@ cp -r gpt-image-2-prompting-skill/gpt-image-2-prompting ~/.claude/skills/
 
 本项目与 OpenAI、Anthropic 无隶属或背书关系。"GPT Image" 是 OpenAI 的产品，"Claude" 是 Anthropic 的产品。
 
+## 开发
+
+技能本体就是 `gpt-image-2-prompting/` 下的那些 Markdown，其余都是工程脚手架：
+
+- **改完技能后重打 `.skill` 包**：`./scripts/build.sh`（macOS/Linux）或 `pwsh ./scripts/build.ps1`（Windows）。
+- **跑 CI 同款本地检查**：`bash scripts/ci-checks.sh` —— 占位符、配方数量一致性、`SKILL.md` frontmatter、bundle 是否存在。
+- **触发与质量自测**：见 [`evals/`](evals/)（`triggers.yaml` + `prompt-cases.md`）。
+- **版本变更**：[CHANGELOG.md](CHANGELOG.md)。
+
 ## 贡献
 
-欢迎 PR，见 [CONTRIBUTING.md](CONTRIBUTING.md)。好的贡献：新增高价值场景配方（附让它成立的关键技巧）、更精准的避坑修法、新的风格组件。
+欢迎 PR，见 [CONTRIBUTING.md](CONTRIBUTING.md)。好的贡献：新增高价值场景配方（附让它成立的关键技巧）、更精准的避坑修法、新的风格组件。也可以用 **New scene recipe** issue 表单来提交新配方。
 
 ## 许可
 

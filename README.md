@@ -6,6 +6,7 @@
 [![Claude Skill](https://img.shields.io/badge/type-Claude%20Skill-8A63D2.svg)](https://www.anthropic.com/news/skills)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](CHANGELOG.md)
+[![CI](https://github.com/JacksonTai2007/gpt-image-2-prompting-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/JacksonTai2007/gpt-image-2-prompting-skill/actions/workflows/ci.yml)
 
 中文说明见 [README_zh.md](README_zh.md)。
 
@@ -32,6 +33,8 @@ gpt-image-2-prompting/
     │                         palettes, materials, art styles, composition, realism boosters
     └── troubleshooting.md     Symptom → cause → fix table for failed generations
 ```
+
+When you ask for an image prompt, the skill **classifies the request** (via `categories.md`), pulls the matching template + recipe, fills the six blocks below, and — if a generation comes out wrong — debugs it against the troubleshooting table.
 
 ### The 6-block prompt protocol
 Every strong prompt — prose or JSON — is built from these, ordered intent → structure → style → constraints:
@@ -95,9 +98,18 @@ and the creators on X whose prompts those repos collected. Several upstream coll
 
 Not affiliated with or endorsed by OpenAI or Anthropic. "GPT Image" is a product of OpenAI; "Claude" is a product of Anthropic.
 
+## Development
+
+The skill itself is just the Markdown under `gpt-image-2-prompting/`; everything else is project scaffolding:
+
+- **Rebuild the `.skill` bundle** after editing the skill: `./scripts/build.sh` (macOS/Linux) or `pwsh ./scripts/build.ps1` (Windows).
+- **Run the same checks CI runs:** `bash scripts/ci-checks.sh` — placeholders, recipe-count consistency, `SKILL.md` frontmatter, and bundle presence.
+- **Eval triggering & prompt quality:** see [`evals/`](evals/) (`triggers.yaml` + `prompt-cases.md`).
+- **Version history:** [CHANGELOG.md](CHANGELOG.md).
+
 ## Contributing
 
-PRs welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). Good contributions: a new high-value scene recipe (with the trick that makes it work), a sharper pitfall fix, or a new style component.
+PRs welcome — see [CONTRIBUTING.md](CONTRIBUTING.md). Good contributions: a new high-value scene recipe (with the trick that makes it work), a sharper pitfall fix, or a new style component. You can also propose one via the **New scene recipe** issue form.
 
 ## License
 
